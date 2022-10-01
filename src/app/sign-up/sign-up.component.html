@@ -1,0 +1,53 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit">
+    <!-- Prénom -->
+    <fieldset>
+        <label for="firstname-order">Prénom</label>
+        <input id="firstname-order" type="text" name="firstname-order" [(ngModel)]="userModel.firstname" #firstname="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+    <div *ngIf="firstname.errors".submitted>
+        <span *ngIf="firstname.errors?.['required']">Ce champ est requis </span>
+        <span *ngIf="firstname.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+        <span *ngIf="firstname.errors?.['maxlength']">La longueur maximale doit être inférieure à 15</span>
+    </div>
+
+
+
+    <!-- Nom de famille -->
+    <fieldset>
+        <label for="lastname-order">Nom de famille</label>
+        <input id="lastname-order" type="text" name="lastname-order" [(ngModel)]="userModel.lastname" #lastname="ngModel" required minlength="3" maxlength="15" >
+    </fieldset>
+    <div *ngIf.="lastname.errors".submitted>
+        <span *ngIf="lastname.errors?.['required']">Ce champ est requis </span>
+        <span *ngIf="lastname.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+        <span *ngIf="lastname.errors?.['maxlength']">La longueur maximale doit être inférieure à 15</span>
+    </div>
+
+
+
+    <!-- E-mail -->
+    <fieldset>
+        <label for="email-order">E-mail</label>
+        <input id="email-order" type="text" name="email-order" [(ngModel)]="userModel.email" #email="ngModel" required email>
+    </fieldset>
+    <div *ngIf="email.errors".submitted>
+        <span *ngIf="email.errors?.['required']">Ce champ est requis </span>
+    </div>
+
+
+
+
+    <!-- Mot de passe -->
+    <fieldset>
+        <label for="password-order">Mot de passe</label>
+        <input id="password-order" type="text" name="password-order" [(ngModel)]="userModel.password" #password="ngModel" required>
+    </fieldset>
+    <div *ngIf="password.errors".submitted>
+        <span *ngIf="email.errors?.['required']".submitted>Ce champ est requis </span>
+        <span *ngIf="email.errors?.['minlength']".submitted>La longueur minimale doit être supérieure à 3</span>
+        <span *ngIf="email.errors?.['maxlength']".submitted>La longueur maximale doit être inférieure à 15</span>
+        <span *ngIf="email.errors?.['email']".submitted>Le format est invalide. Format requis : "nom@exemple.com"</span>
+    </div>
+
+    <button type="submit">Se connecter</button>
+</form>
